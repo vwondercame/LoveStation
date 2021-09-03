@@ -5,8 +5,8 @@ import Form from './Form/Form';
 function App() {
   return (
     <main>
-   <header>
-     <h1>Love Station</h1>
+   <header className="header">
+    <h1 className="header__title">Love Station</h1>
    </header>
    <Form />
   </main>
