@@ -1,0 +1,9 @@
+@use "./partials/variables" as *;
+@use "./partials/typography" as *;
+@use "./Form/form";
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'AvenirNext LT Pro';
+}
