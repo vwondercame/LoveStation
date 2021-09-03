@@ -1,13 +1,12 @@
 import { Component } from 'react';
 import './App.scss';
-import Form from './Form/Form';
+import Form from './Components/Form/Form';
+import Header from './Components/Header/Header';
 
 function App() {
   return (
     <main>
-   <header className="header">
-    <h1 className="header__title">Love Station</h1>
-   </header>
+    <Header />
    <Form />
   </main>
   );
