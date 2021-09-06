@@ -43,22 +43,25 @@ render() {
       <form className="lovematch-form" onSubmit={this.handleSubmit} >
         <div className="lovematch-form__input-container">
           <div className="lovematch-form__container">
-            <label className="lovematch-form__title"> Lover 1</label>
+           
+            <label className="lovematch-form__title"><img src="https://fontmeme.com/permalink/210903/f47d72536e5a126a14b309ae5d8347e5.png" alt="numans-font" border="0"/></label>
             <input 
               onChange = {(event) => this.setState({...this.state, firstName: event.target.value})}
               name="fname"
+
               className="lovematch-form__name-input lovematch-form__name-input1"
-              placeholder="first lover's name"
+              placeholder="First lover's name"
             />
           </div>
 
           <div className="lovematch-form__container">
-            <label className="lovematch-form__title"> Lover 2</label>
+            <label className="lovematch-form__title"><img src="https://fontmeme.com/permalink/210903/6b322fb9431a0963856338ef1819620d.png" alt="numans-font" border="0"/></label>
             <input 
              onChange = {(event) => this.setState({...this.state, secondName: event.target.value})}
             name="sname"
+
               className="lovematch-form__name-input lovematch-form__name-input2"
-              placeholder="second lover's name"
+              placeholder="Second lover's name"
             />
           </div>
         </div>
@@ -69,7 +72,7 @@ render() {
             className="comment-section__button"
             type="submit"
           >
-            Calculate
+            <img className="lovematch-form__btnimg" src="https://fontmeme.com/permalink/210903/aab66d877981f8cbfbfc93e14ec4dd47.png" alt="numans-font" border="0"/>
           </button>
         </div>
       </form>
