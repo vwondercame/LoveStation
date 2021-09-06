@@ -73,10 +73,12 @@ render() {
           </div>
 
           <div className="lovematch-form__container">
+
             <label className="lovematch-form__title"><img src="https://fontmeme.com/permalink/210903/6b322fb9431a0963856338ef1819620d.png" alt="numans-font" border="0"/></label>
             <input 
              onChange = {(event) => this.setState({...this.state, secondName: event.target.value})}
             name="sname"
+
 
               className="lovematch-form__name-input lovematch-form__name-input2"
               placeholder="Second lover's name"
@@ -99,6 +101,7 @@ render() {
         <h2>{this.state.percentage}</h2>
         <h3>{this.state.result}</h3>
         <img src={this.state.image} />
+
       </div>
 
 
