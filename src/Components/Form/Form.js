@@ -1,49 +1,57 @@
 import React, {Component} from "react";
 import axios from "axios";
-// import { createRef } from "react";
+import { createRef } from "react";
+import meh from '../../assets/images/meh.jpg';
+import marriage from '../../assets/images/wedding.jpg'
 
 class Form extends Component {
-  state = {
-    options: {
-      method: 'GET',
-      url: 'https://love-calculator.p.rapidapi.com/getPercentage',
-      params: {fname: 'John', sname: 'Alice'},
-      headers: {
-        'x-rapidapi-host': 'love-calculator.p.rapidapi.com',
-        'x-rapidapi-key': '6d23cc90f1mshbaa369c944f52d7p1541e8jsn0f06105612ee'
-      }
-    }
-  };
+  constructor(props) {
+    super(props)
+    this.state = {firstName: "", secondName: "", percentage: "", result: "", image: false}
+  }
   
     handleSubmit = (event) => {
       event.preventDefault();
-      const fname = event.target.fname.value;
-      const sname = event.target.sname.value;
 
-      this.setState({
-        options: {
-          method: 'GET',
-          url: 'https://love-calculator.p.rapidapi.com/getPercentage',
-          params: {fname: fname, sname: sname },
-          headers: {
-            'x-rapidapi-host': 'love-calculator.p.rapidapi.com',
-            'x-rapidapi-key': '6d23cc90f1mshbaa369c944f52d7p1541e8jsn0f06105612ee'
-          }
-        }
-      }, () => {
-        axios.get(this.state.options)
+      const options = {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-host': 'love-calculator.p.rapidapi.com',
+          'x-rapidapi-key': '6d23cc90f1mshbaa369c944f52d7p1541e8jsn0f06105612ee'
+        }, 
+        params:{
+        fname: this.state.firstName,
+        sname: this.state.secondName
+      }
+    }
+        axios.get('https://love-calculator.p.rapidapi.com/getPercentage', options)
         .then((response) => {
-        console.log(response.data);
+        console.log(response);
         this.setState({
           ...this.state,
           percentage: response.data.percentage,
-          result: response.data.result
+          result: response.data.result, 
         })
+
+        if(this.state.percentage < 20) {
+          this.setState({
+            image: marriage
+          })
+          // return {meh}
+        } else if (this.state.percentage > 21 && this.state.percentage <75) {
+          this.setState({
+            image: meh
+          })
+        } else {
+          this.setState({
+          image: false
+        })
+        }
       
       }).catch(function (error) {
         console.error(error);
-      });
-      })      
+      });     
+      event.target.reset();
     }
   
 
@@ -53,18 +61,27 @@ render() {
       <form className="lovematch-form" onSubmit={this.handleSubmit} >
         <div className="lovematch-form__input-container">
           <div className="lovematch-form__container">
-            <label className="lovematch-form__title"> Lover 1</label>
-            <input name="fname"
+           
+            <label className="lovematch-form__title"><img src="https://fontmeme.com/permalink/210903/f47d72536e5a126a14b309ae5d8347e5.png" alt="numans-font" border="0"/></label>
+            <input 
+              onChange = {(event) => this.setState({...this.state, firstName: event.target.value})}
+              name="fname"
+
               className="lovematch-form__name-input lovematch-form__name-input1"
-              placeholder="first lover's name"
+              placeholder="First lover's name"
             />
           </div>
 
           <div className="lovematch-form__container">
-            <label className="lovematch-form__title"> Lover 2</label>
-            <input name="sname"
+
+            <label className="lovematch-form__title"><img src="https://fontmeme.com/permalink/210903/6b322fb9431a0963856338ef1819620d.png" alt="numans-font" border="0"/></label>
+            <input 
+             onChange = {(event) => this.setState({...this.state, secondName: event.target.value})}
+            name="sname"
+
+
               className="lovematch-form__name-input lovematch-form__name-input2"
-              placeholder="second lover's name"
+              placeholder="Second lover's name"
             />
           </div>
         </div>
@@ -75,7 +92,7 @@ render() {
             className="comment-section__button"
             type="submit"
           >
-            Calculate
+            <img className="lovematch-form__btnimg" src="https://fontmeme.com/permalink/210903/aab66d877981f8cbfbfc93e14ec4dd47.png" alt="numans-font" border="0"/>
           </button>
         </div>
       </form>
@@ -83,6 +100,8 @@ render() {
       <div className="lovematch__result">
         <h2>{this.state.percentage}</h2>
         <h3>{this.state.result}</h3>
+        <img src={this.state.image} />
+
       </div>
 
 
@@ -95,3 +114,4 @@ render() {
 }
 
 export default Form;
+
