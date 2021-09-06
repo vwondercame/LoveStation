@@ -1,11 +1,13 @@
 import React, {Component} from "react";
 import axios from "axios";
 import { createRef } from "react";
+import meh from '../../assets/images/meh.jpg';
+import marriage from '../../assets/images/wedding.jpg'
 
 class Form extends Component {
   constructor(props) {
     super(props)
-    this.state = {firstName: "", secondName: "", percentage: "", result: ""}
+    this.state = {firstName: "", secondName: "", percentage: "", result: "", image: false}
   }
   
     handleSubmit = (event) => {
@@ -28,12 +30,28 @@ class Form extends Component {
         this.setState({
           ...this.state,
           percentage: response.data.percentage,
-          result: response.data.result 
+          result: response.data.result, 
         })
+
+        if(this.state.percentage < 20) {
+          this.setState({
+            image: marriage
+          })
+          // return {meh}
+        } else if (this.state.percentage > 21 && this.state.percentage <75) {
+          this.setState({
+            image: meh
+          })
+        } else {
+          this.setState({
+          image: false
+        })
+        }
       
       }).catch(function (error) {
         console.error(error);
       });     
+      event.target.reset();
     }
   
 
@@ -80,6 +98,7 @@ render() {
       <div className="lovematch__result">
         <h2>{this.state.percentage}</h2>
         <h3>{this.state.result}</h3>
+        <img src={this.state.image} />
       </div>
 
 
