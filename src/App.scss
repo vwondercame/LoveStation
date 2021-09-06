@@ -1,6 +1,7 @@
 @use "./partials/typography" as *;
 @use "./Components/Form/form";
 @use "./Components/Header/header";
+@use "./Components/Heart/heart";
 
 *,
 *::before,
@@ -8,15 +9,13 @@
   box-sizing: border-box;
 }
 
-// :root {
-//     --bodygradient: radial-gradient(
-//         circle,
-//          rgba(70,51,210,1) 0%, 
-//          rgba(255,91,162,1) 100%);
-//   }
-
 body {
     margin: 0;
     box-sizing: border-box;
     font-family: 'AvenirNext LT Pro';
+    background-color: #fffafa;
+    background-image: radial-gradient(circle, #ffffff, #f8d1fc, #ff97d2, #ff517f, #ff0000);
+    background-size: 100% 300%;
+    background-position-y: 55rem;
 }
+
